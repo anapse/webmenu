@@ -172,6 +172,8 @@ body {
   font-style: italic;
   color: #fdf0cc;
   flex: 1;
+  font-size: clamp(11px, 1.3vw, 20px);
+  font-weight: 600;
 }
 
 .precio {
