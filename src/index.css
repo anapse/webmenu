@@ -19,13 +19,12 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-
   background-image: url("/fondo.jpg");
   background-size: cover;
   background-position: center;
 }
 
-/* CONTENEDOR IZQUIERDO (75% TV) */
+/* CONTENEDOR IZQUIERDO */
 .left-zone {
   width: 100%;
   height: 100%;
@@ -48,27 +47,27 @@ body {
   display: flex;
   align-items: center;
   z-index: 10;
+  flex-shrink: 0;
 }
 
 /* TITULO */
 .banner-titulo {
   width: 100%;
   height: 100%;
-
   align-items: center;
   justify-content: center;
 }
 
 .img-titulo {
   width: 70%;
-  height: 140%;
+  height: 120%;
 }
 
 /* LOGO */
 .logo-box {
   right: 5%;
   top: 1%;
-  height: 30%;
+  height: 20%;
   position: absolute;
   align-items: center;
   justify-content: center;
@@ -80,45 +79,281 @@ body {
   object-fit: contain;
 }
 
-/* MENU ROTADOR */
-.menu-rotador {
-  width: 100%;
-  height: 80%;
-  border-radius: 20px;
-  overflow: hidden;
+/* =============================================
+   MENU CONTAINER
+   ============================================= */
 
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(4px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .menu-container {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
+  flex: 1;
+  min-height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(30, 12, 0, 0.4);
+  backdrop-filter: blur(5px);
+  border: 2px solid #c8860d;
+  padding: 10px;
 }
 
+/* TV / DESKTOP — 4 col x 2 filas, todo entra sin scroll */
 .menu-row {
-  display: flex;
-  gap: 40px;
-  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 40% 60%;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
 }
 
+/* TARJETA */
 .menu-card {
-  min-width: 300px;
-  background: rgba(80, 40, 0, 0.8);
-  border-radius: 20px;
-  padding: 20px;
-  color: white;
-  font-size: 22px;
+  background: linear-gradient(
+    170deg,
+    rgba(122, 69, 0, 0.5) 0%,
+    rgba(90, 46, 0, 0.45) 50%,
+    rgba(61, 30, 0, 0.4) 100%
+  );
+  border: 2px solid #c8860d;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(245, 204, 106, 0.15);
 }
 
+/* TITULO tarjeta */
 .menu-card h2 {
+  background: linear-gradient(180deg, #5a2e00 0%, #3d1e00 100%);
+  border-bottom: 2px solid #c8860d;
   text-align: center;
-  margin-bottom: 10px;
-  font-size: 28px;
+  padding: 7px 6px;
+  flex-shrink: 0;
+  font-size: clamp(11px, 1.2vw, 21px);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f5cc6a;
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(240, 180, 20, 0.4);
+  line-height: 1.2;
+}
+
+/* CUERPO tarjeta */
+.menu-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5px 12px 7px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* FILA ITEM */
+.menu-card-body p {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+  font-size: clamp(9px, 1vw, 17px);
+  color: #fdf0cc;
+  padding: 1px 0;
+  border-bottom: 1px dashed rgba(200, 134, 13, 0.3);
+  line-height: 1.2;
+}
+
+.menu-card-body p:last-child {
+  border-bottom: none;
+}
+
+.nombre {
+  font-style: italic;
+  color: #fdf0cc;
+  flex: 1;
+}
+
+.precio {
+  font-weight: 700;
+  color: #f5cc6a;
+  white-space: nowrap;
+  text-shadow: 0 0 6px rgba(240, 180, 20, 0.35);
+}
+
+/* =============================================
+   TABLET HORIZONTAL (landscape) — igual que TV
+   todo entra sin scroll
+   ============================================= */
+@media (max-width: 1024px) and (orientation: landscape) {
+  body {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .app {
+    height: 100dvh;
+  }
+
+  .left-inner {
+    height: 100dvh;
+    padding: 12px;
+  }
+
+  .top-row {
+    height: 16%;
+  }
+
+  .menu-container {
+    overflow: hidden;
+    padding: 8px;
+  }
+
+  .menu-row {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 40% 60%;
+    height: 100%;
+    gap: 8px;
+  }
+
+  .menu-card h2 {
+    font-size: clamp(10px, 1.6vw, 18px);
+    padding: 5px 4px;
+  }
+
+  .menu-card-body {
+    padding: 4px 8px 5px;
+  }
+
+  .menu-card-body p {
+    font-size: clamp(9px, 1.3vw, 15px);
+  }
+}
+
+/* =============================================
+   TABLET VERTICAL (portrait) — 2 columnas, scroll
+   ============================================= */
+@media (max-width: 1024px) and (orientation: portrait) and (min-width: 601px) {
+  body {
+    height: auto;
+    min-height: 100dvh;
+    overflow: auto;
+  }
+
+  .app {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .left-inner {
+    height: auto;
+    min-height: 100dvh;
+    padding: 12px 12px 100px;
+    overflow: visible;
+  }
+
+  .top-row {
+    height: auto;
+    min-height: 70px;
+    margin-bottom: 10px;
+  }
+
+  .menu-container {
+    overflow: visible;
+    flex: none;
+    padding: 10px;
+  }
+
+  .menu-row {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    height: auto;
+    gap: 12px;
+  }
+
+  .menu-card h2 {
+    font-size: clamp(14px, 2.5vw, 24px);
+  }
+
+  .menu-card-body {
+    padding: 8px 12px 10px;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .menu-card-body p {
+    font-size: clamp(12px, 2vw, 20px);
+    padding: 4px 0;
+  }
+}
+
+/* =============================================
+   MOVIL — 2 columnas, scroll
+   ============================================= */
+@media (max-width: 600px) {
+  body {
+    height: auto;
+    min-height: 100dvh;
+    overflow: auto;
+  }
+
+  .app {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .left-inner {
+    height: auto;
+    min-height: 100dvh;
+    padding: 10px 10px 90px;
+    overflow: visible;
+  }
+
+  .top-row {
+    height: auto;
+    min-height: 55px;
+    margin-bottom: 8px;
+  }
+
+  .logo-box {
+    height: 50px;
+    top: 8px;
+  }
+
+  .img-titulo {
+    width: 60%;
+    height: auto;
+  }
+
+  .menu-container {
+    overflow: visible;
+    flex: none;
+    padding: 8px;
+  }
+
+  .menu-row {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    height: auto;
+    gap: 10px;
+  }
+
+  .menu-card h2 {
+    font-size: 13px;
+    padding: 7px 5px;
+  }
+
+  .menu-card-body {
+    padding: 6px 10px 8px;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  .menu-card-body p {
+    font-size: 11px;
+    padding: 3px 0;
+    line-height: 1.3;
+  }
 }
